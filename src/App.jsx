@@ -1,181 +1,51 @@
-import React from 'react';
+import { useEffect, useState } from 'react'
+import { BrowserRouter, Link, NavLink, Route, Routes, useLocation } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { ArrowRight, Check, ChevronDown, Clock3, FlaskConical, Leaf, Mail, MapPin, Menu, Microscope, Moon, Phone, Quote, ShieldCheck, Sprout, Sun, Users, X } from 'lucide-react'
+import './App.css'
 
-function App() {
-  return (
-    <div className="bg-slate-50 text-slate-800 font-sans antialiased">
-      {/* Navegación */}
-      <nav className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-20 items-center">
-            <div className="flex-shrink-0 flex items-center gap-2">
-              <span className="text-3xl font-bold text-emerald-900 tracking-tighter">FLC</span>
-              <span className="text-sm font-semibold text-rose-600 uppercase tracking-widest hidden sm:block">Quality Control</span>
-            </div>
-            <div className="hidden md:flex space-x-8">
-              <a href="#inicio" className="text-emerald-900 hover:text-rose-600 px-3 py-2 text-sm font-medium transition-colors">Inicio</a>
-              <a href="#sobre-nosotros" className="text-emerald-900 hover:text-rose-600 px-3 py-2 text-sm font-medium transition-colors">Sobre nosotros</a>
-              <a href="#servicios" className="text-emerald-900 hover:text-rose-600 px-3 py-2 text-sm font-medium transition-colors">Servicios</a>
-              <a href="#equipo" className="text-emerald-900 hover:text-rose-600 px-3 py-2 text-sm font-medium transition-colors">Equipo</a>
-              <a href="#contacto" className="bg-emerald-900 text-white hover:bg-emerald-800 px-5 py-2 rounded-md text-sm font-medium transition-colors">Contacto</a>
-            </div>
-          </div>
-        </div>
-      </nav>
+const heroImage = 'https://images.unsplash.com/photo-1559563362-c667ba5f5480?auto=format&fit=crop&w=2200&q=85'
+const flowerImage = 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1200&q=85'
+const services = [
+  { icon: Microscope, title: 'Inspección de flores', text: 'Evaluamos tallos, botones, apertura y presentación para que cada embarque llegue con la calidad que tu marca promete.', image: 'https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=900&q=85' },
+  { icon: FlaskConical, title: 'Análisis de suelos', text: 'Datos accionables sobre nutrientes, pH y condiciones del suelo para tomar mejores decisiones de producción.', image: 'https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?auto=format&fit=crop&w=900&q=85' },
+  { icon: ShieldCheck, title: 'Control fitosanitario', text: 'Identificamos riesgos y puntos críticos antes de que afecten la sanidad, la exportación o la reputación de tu finca.', image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=900&q=85' },
+  { icon: Users, title: 'Agencia de carga', text: 'Acompañamiento especializado en recepción, consolidación y despacho de flores de corte y flores de verano.', image: 'https://images.unsplash.com/photo-1586771107445-d3ca888129ce?auto=format&fit=crop&w=900&q=85' },
+  { icon: Sprout, title: 'Asesoría técnica', text: 'Convertimos hallazgos de calidad en mejoras concretas para tus procesos, equipos y colaboradores.', image: 'https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=900&q=85' },
+  { icon: Leaf, title: 'Capacitación de personal', text: 'Formación práctica en buenas prácticas, estándares de calidad y control preventivo en campo.', image: 'https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=900&q=85' },
+]
+const testimonials = [
+  { quote: 'FLC nos ayuda a detectar detalles antes de que se conviertan en reclamos. Su mirada técnica ya es parte de nuestro proceso.', name: 'Gerencia de calidad', company: 'Finca florícola · Tabacundo' },
+  { quote: 'La comunicación es directa y las recomendaciones son claras. Sentimos que tenemos un aliado en cada despacho.', name: 'Coordinación de exportaciones', company: 'Agencia de carga · Quito' },
+]
 
-      {/* Inicio (Hero Section) */}
-      <section id="inicio" className="bg-emerald-900 text-white py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Control de Calidad</h1>
-          <p className="mt-4 text-xl md:text-2xl text-emerald-100 max-w-3xl mx-auto font-light leading-relaxed">
-            FLC es una empresa especializada en el control de calidad de flores de corte, rosas y flores de verano. Nos encontramos en la ciudad de Quito, Tababela, y trabajamos con dedicación para garantizar la excelencia en los productos de nuestros clientes. Confía en nosotros para mejorar la calidad de tu negocio.
-          </p>
-          <div className="mt-10">
-            <a href="#contacto" className="inline-block bg-rose-600 text-white font-semibold px-8 py-4 rounded-md shadow-lg hover:bg-rose-700 hover:shadow-xl transition-all">
-              Mejora la calidad de tu negocio
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Sobre Nosotros */}
-      <section id="sobre-nosotros" className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-emerald-900 mb-4">Sobre Nosotros</h2>
-            <p className="text-lg text-slate-600 max-w-4xl mx-auto">
-              Somos un grupo dedicado al control de calidad en el mercado de flores, nuestro esfuerzo diario a través de la innovación de procesos con herramientas tecnológicas busca garantizar la calidad de los productos para nuestros clientes.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="bg-slate-50 p-10 rounded-xl border-t-4 border-emerald-700 shadow-sm">
-              <h3 className="text-2xl font-bold text-emerald-900 mb-4">Misión</h3>
-              <p className="text-slate-600 leading-relaxed">
-                Brindar servicio de control de calidad eficiente comprometidos a garantizar la calidad de nuestro servicio a nuestros clientes.
-              </p>
-            </div>
-            <div className="bg-slate-50 p-10 rounded-xl border-t-4 border-rose-600 shadow-sm">
-              <h3 className="text-2xl font-bold text-emerald-900 mb-4">Visión</h3>
-              <p className="text-slate-600 leading-relaxed">
-                En un mundo en constante evolución, en el que los consumidores son cada vez más exigentes y están más informados, es esencial contar con proveedores de confianza y garantía de calidad. Precisamente, en FLC nos especializamos en brindar un servicio de calidad.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Servicios */}
-      <section id="servicios" className="py-20 bg-slate-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-emerald-900 mb-4">Servicios</h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-              En FLC nos especializamos en brindar un control de calidad eficiente y eficaz. Nuestro objetivo es garantizar la calidad de los productos y procesos de nuestros clientes, aportando así al crecimiento y éxito de sus negocios. Confía en nosotros para obtener resultados excelentes y un servicio personalizado.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-slate-100">
-              <h4 className="text-xl font-bold text-emerald-900 mb-3">Análisis de Suelos</h4>
-              <p className="text-slate-600 text-sm">El análisis de suelos es esencial para determinar la calidad y nutrientes presentes en la tierra, y así poder tomar las medidas necesarias para mejorar su productividad.</p>
-            </div>
-            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-slate-100">
-              <h4 className="text-xl font-bold text-emerald-900 mb-3">Control Calidad Agencia de Carga</h4>
-              <p className="text-slate-600 text-sm">Revisión de rosas y flores de verano, esencial para determinar la calidad del producto si tiene problemas fitosanitarios que puedan afectar la calidad.</p>
-            </div>
-            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-slate-100">
-              <h4 className="text-xl font-bold text-emerald-900 mb-3">Inspección de Cultivos</h4>
-              <p className="text-slate-600 text-sm">"La inspección de cultivos es una tarea esencial para garantizar la calidad y salud de nuestros alimentos, por lo que debemos realizarla con responsabilidad y meticulosidad."</p>
-            </div>
-            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-slate-100">
-              <h4 className="text-xl font-bold text-emerald-900 mb-3">Asesoramiento Técnico</h4>
-              <p className="text-slate-600 text-sm">El asesoramiento técnico es fundamental para garantizar el éxito de un proyecto de construcción y agrícola.</p>
-            </div>
-            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-slate-100">
-              <h4 className="text-xl font-bold text-emerald-900 mb-3">Capacitación en Buenas Prácticas</h4>
-              <p className="text-slate-600 text-sm">La capacitación en buenas prácticas es esencial para garantizar la calidad y eficiencia en nuestro trabajo diario.</p>
-            </div>
-            <div className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-slate-100">
-              <h4 className="text-xl font-bold text-emerald-900 mb-3">Control de Plagas</h4>
-              <p className="text-slate-600 text-sm">Estrategias y monitoreo especializado para proteger la sanidad del producto y evitar pérdidas de calidad en el cultivo.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Equipo */}
-      <section id="equipo" className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-emerald-900 mb-6">Conoce a nuestro equipo</h2>
-          <p className="text-lg text-slate-600 max-w-4xl mx-auto mb-12 leading-relaxed">
-            Nuestro equipo en FLC se dedica a brindar servicios de control de calidad en el sector de la agricultura y ganadería menor en la ciudad de Quito, específicamente en Tababela. Con amplia experiencia en el campo y un enfoque en la excelencia y el compromiso con nuestros clientes, nos esforzamos por garantizar que los productos y procesos agrícolas cumplan con los más altos estándares de calidad.
-          </p>
-          
-          <div className="inline-block">
-            <div className="bg-slate-50 w-64 p-6 rounded-xl border border-slate-200 shadow-sm mx-auto">
-              <div className="w-24 h-24 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">LC</div>
-              <h3 className="text-xl font-bold text-emerald-900">Luis Chavez</h3>
-              <p className="text-rose-600 font-medium text-sm mt-1">Manager FLC</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contacto */}
-      <section id="contacto" className="py-20 bg-emerald-900 text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Contacto</h2>
-              <p className="text-emerald-100 text-lg mb-10">
-                ¡Hola! Somos FLC, una empresa especializada en el control de calidad.
-              </p>
-              
-              <div className="space-y-6 text-emerald-50">
-                <div className="flex items-center gap-4">
-                  <span className="font-bold">Ubicación:</span> Quito, Puembo - Ecuador
-                </div>
-                <div className="flex items-center gap-4">
-                  <span className="font-bold">Teléfono:</span> +593 984063454
-                </div>
-                <div className="flex items-center gap-4">
-                  <span className="font-bold">Email:</span> flc.ec.qc@gmail.com
-                </div>
-                <div className="flex items-center gap-4">
-                  <span className="font-bold">Redes:</span> @flc
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white p-8 rounded-xl text-slate-800 shadow-xl">
-              <form className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Nombre completo</label>
-                  <input type="text" className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Email</label>
-                  <input type="email" className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Mensaje</label>
-                  <textarea rows="4" className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all" defaultValue="Hola excelente día. Cuéntanos cómo podemos ayudarte. Saludos equipo flc.quality control"></textarea>
-                </div>
-                <button type="button" className="w-full bg-emerald-900 text-white font-bold py-3 rounded-md hover:bg-emerald-800 transition-colors mt-4">
-                  Enviar
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-950 text-slate-400 py-8 text-center text-sm">
-        <p>flc.ec © 2026 FLC Quality Control by Luis Chavez.</p>
-      </footer>
-    </div>
-  );
+function App() { return <BrowserRouter><ScrollToTop /><ThemeProvider /><Layout /></BrowserRouter> }
+function ThemeProvider() {
+  const [dark, setDark] = useState(() => { const saved = localStorage.getItem('flc-theme'); return saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches })
+  useEffect(() => { document.documentElement.classList.toggle('dark', dark); localStorage.setItem('flc-theme', dark ? 'dark' : 'light'); window.__flcTheme = dark }, [dark])
+  useEffect(() => { window.__flcToggleTheme = () => setDark((value) => !value) }, [])
+  return null
 }
+function ScrollToTop() { const { pathname } = useLocation(); useEffect(() => window.scrollTo(0, 0), [pathname]); return null }
+function Layout() { return <div className="site-shell"><Navbar /><main><Routes><Route path="/" element={<Home />} /><Route path="/nosotros" element={<About />} /><Route path="/servicios" element={<Services />} /><Route path="/contacto" element={<Contact />} /></Routes></main><Footer /><WhatsAppButton /></div> }
 
-export default App;
+function Navbar() {
+  const [open, setOpen] = useState(false); const [isDark, setIsDark] = useState(() => localStorage.getItem('flc-theme') === 'dark')
+  const links = [['/', 'Inicio'], ['/nosotros', 'Nosotros'], ['/servicios', 'Servicios'], ['/contacto', 'Contacto']]
+  const closeMenu = () => setOpen(false)
+  const toggleTheme = () => { setIsDark((value) => !value); window.__flcToggleTheme?.() }
+  return <header className="site-header"><nav className="nav-wrap" aria-label="Navegación principal"><Link to="/" onClick={closeMenu} className="brand" aria-label="FLC Quality Control, inicio"><span className="brand-mark">FLC</span><span className="brand-copy"><strong>Quality Control</strong><small>Florícola · Ecuador</small></span></Link><div className={`desktop-nav ${open ? 'is-open' : ''}`}>{links.map(([path, label]) => <NavLink key={path} to={path} onClick={closeMenu} className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>{label}</NavLink>)}<Link to="/contacto" onClick={closeMenu} className="nav-cta">Agenda una inspección <ArrowRight size={15} /></Link></div><div className="nav-actions"><button className="icon-button" onClick={toggleTheme} aria-label="Cambiar modo de color" title="Cambiar modo de color">{isDark ? <Sun size={18} /> : <Moon size={18} />}</button><button className="menu-button" onClick={() => setOpen(!open)} aria-label={open ? 'Cerrar menú' : 'Abrir menú'} aria-expanded={open}>{open ? <X size={22} /> : <Menu size={22} />}</button></div></nav></header>
+}
+function WhatsAppButton() { return <a className="whatsapp" href="https://wa.me/593984063454?text=Hola%20FLC,%20quiero%20agendar%20una%20inspección%20de%20calidad." target="_blank" rel="noreferrer" aria-label="Contactar a FLC por WhatsApp" title="Escríbenos por WhatsApp"><span>WA</span></a> }
+function PageIntro({ eyebrow, title, text }) { return <section className="page-intro"><div className="section-frame"><p className="eyebrow">{eyebrow}</p><h1>{title}</h1>{text && <p className="intro-text">{text}</p>}</div></section> }
+
+function Home() { return <><section className="hero"><div className="hero-image" style={{ backgroundImage: `url(${heroImage})` }} /><div className="hero-shade" /><div className="section-frame hero-content"><motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .7 }}><p className="eyebrow eyebrow-light">Control que se nota en cada tallo</p><h1>La calidad de tus flores empieza <em>antes</em> del embarque.</h1><p className="hero-text">Inspección, criterio técnico y acompañamiento para que tus rosas y flores de corte lleguen con la excelencia que tu negocio necesita.</p><div className="hero-actions"><Link to="/contacto" className="button button-primary">Agenda una inspección <ArrowRight size={17} /></Link><Link to="/servicios" className="button button-ghost">Explora nuestros servicios <ChevronDown size={17} /></Link></div></motion.div></div><div className="hero-note"><span className="line" /> Tababela, Quito · Ecuador</div></section><section className="trust-strip"><div className="section-frame trust-grid"><div><strong>+10 años</strong><span>de experiencia florícola</span></div><div><strong>100%</strong><span>compromiso con tu calidad</span></div><div><strong>24/7</strong><span>acompañamiento operativo</span></div><div><strong>1 objetivo</strong><span>que exportes mejor</span></div></div></section><section className="section-frame section-block split-feature"><div className="feature-image"><img src={flowerImage} alt="Rosas ecuatorianas listas para inspección" /><span className="image-label">01 / criterio técnico</span></div><div className="feature-copy"><p className="eyebrow">Por qué elegir FLC</p><h2>Una mirada experta para decisiones que sí mueven tu operación.</h2><p>Somos el punto de control entre tu cultivo y la promesa que entregas al mundo. Trabajamos junto a fincas, agencias de carga y equipos de exportación para anticipar riesgos, elevar estándares y proteger cada envío.</p><ul className="check-list"><li><Check size={17} /> Reportes claros, sin rodeos</li><li><Check size={17} /> Recomendaciones accionables</li><li><Check size={17} /> Respuesta cercana y oportuna</li></ul><Link to="/nosotros" className="text-link">Conoce nuestra forma de trabajar <ArrowRight size={16} /></Link></div></section><ServicesPreview /><section className="section-frame section-block proof-section"><div className="section-heading"><div><p className="eyebrow">Prueba social</p><h2>Calidad que construye relaciones de largo plazo.</h2></div><p>Fincas y agencias confían en FLC para cuidar el detalle que sostiene sus negocios.</p></div><div className="testimonial-grid">{testimonials.map((item) => <article className="testimonial" key={item.company}><Quote size={25} /><p>“{item.quote}”</p><footer><strong>{item.name}</strong><span>{item.company}</span></footer></article>)}</div></section><LeadMagnet /></> }
+function ServicesPreview() { return <section className="section-block services-band"><div className="section-frame"><div className="section-heading"><div><p className="eyebrow">Lo que hacemos</p><h2>Control con propósito, en cada etapa.</h2></div><Link to="/servicios" className="text-link">Ver todos los servicios <ArrowRight size={16} /></Link></div><div className="service-grid">{services.slice(0, 3).map((service) => <ServiceCard key={service.title} service={service} />)}</div></div></section> }
+function ServiceCard({ service }) { const Icon = service.icon; return <article className="service-card"><div className="service-card-image"><img src={service.image} alt={service.title} /><span><Icon size={20} /></span></div><div className="service-card-body"><h3>{service.title}</h3><p>{service.text}</p><Link to="/contacto" aria-label={`Solicitar ${service.title}`}><ArrowRight size={18} /></Link></div></article> }
+
+function About() { return <><PageIntro eyebrow="La empresa detrás del control" title="Tecnología, experiencia y criterio humano." text="Nacimos en el corazón florícola de Ecuador con una convicción sencilla: la calidad no se revisa al final, se construye en cada decisión." /><section className="section-frame section-block about-story"><div className="about-copy"><p className="eyebrow">Nuestra historia</p><h2>Conocemos el ritmo real de la floricultura.</h2><p>FLC Quality Control acompaña a quienes hacen posible que las flores ecuatorianas lleguen a nuevos mercados. Desde Tababela, Quito, combinamos observación en campo, disciplina operativa y herramientas tecnológicas para convertir la calidad en una ventaja competitiva.</p><p>Trabajamos con cercanía y precisión: entendemos tu operación, hablamos el idioma de tu equipo y entregamos información que sirve para actuar.</p></div><div className="values-stack"><article><span>01</span><div><h3>Misión</h3><p>Brindar control de calidad eficiente y confiable, comprometido con la excelencia de cada cliente.</p></div></article><article><span>02</span><div><h3>Visión</h3><p>Ser el aliado de referencia para una floricultura ecuatoriana más consistente, competitiva y sostenible.</p></div></article><article><span>03</span><div><h3>Valores</h3><p>Rigor, transparencia, respeto por el producto y mejora continua en cada inspección.</p></div></article></div></section><section className="team-band"><div className="section-frame team-layout"><div><p className="eyebrow">El equipo</p><h2>Personas atentas al detalle.</h2><p>La tecnología amplía nuestra mirada, pero son las personas quienes hacen las preguntas correctas. Nuestro equipo está preparado para acompañarte en campo, planta y despacho.</p><Link to="/contacto" className="button button-primary">Hablemos de tu operación <ArrowRight size={17} /></Link></div><div className="team-image"><img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85" alt="Equipo colaborando en una reunión técnica" /></div></div></section><LeadMagnet /></> }
+function Services() { return <><PageIntro eyebrow="Soluciones FLC" title="Todo el control que tu flor necesita." text="Servicios especializados para cuidar el producto, reducir riesgos y darle a tu equipo información para avanzar." /><section className="section-frame section-block"><div className="service-list">{services.map((service, index) => <motion.article className="service-row" key={service.title} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: .2 }} transition={{ delay: index * .05 }}><div className="service-row-number">0{index + 1}</div><div className="service-row-icon"><service.icon size={22} /></div><div className="service-row-copy"><h2>{service.title}</h2><p>{service.text}</p></div><Link to="/contacto" className="circle-arrow" aria-label={`Consultar por ${service.title}`}><ArrowRight size={18} /></Link></motion.article>)}</div></section><LeadMagnet /></> }
+function Contact() { return <><PageIntro eyebrow="Hablemos de calidad" title="Tu próximo embarque empieza con una conversación." text="Cuéntanos qué necesitas controlar. Te responderemos con una ruta clara para tu operación." /><section className="section-frame section-block contact-layout"><div className="contact-details"><p className="eyebrow">Contacto directo</p><h2>Estamos cerca de donde sucede la operación.</h2><p>Atendemos fincas, agencias de carga y equipos de exportación en Tababela, Puembo y el corredor florícola de Quito.</p><div className="contact-items"><a href="mailto:flc.ec.qc@gmail.com"><Mail size={19} /><span><small>Correo</small>flc.ec.qc@gmail.com</span></a><a href="tel:+593984063454"><Phone size={19} /><span><small>Teléfono / WhatsApp</small>+593 984 063 454</span></a><div><MapPin size={19} /><span><small>Ubicación</small>Tababela, Quito, Ecuador</span></div><div><Clock3 size={19} /><span><small>Disponibilidad</small>Lun - Sáb · 08:00 - 18:00</span></div></div></div><form className="contact-form" action="https://formsubmit.co/flc.ec.qc@gmail.com" method="POST"><input type="hidden" name="_subject" value="Nuevo lead desde FLC Quality Control" /><input type="hidden" name="_captcha" value="false" /><input type="hidden" name="_template" value="table" /><input type="hidden" name="_next" value={`${window.location.origin}/contacto?enviado=true`} /><div className="form-grid"><label>Nombre completo<input type="text" name="nombre" required placeholder="Tu nombre" /></label><label>Empresa<input type="text" name="empresa" placeholder="Nombre de tu empresa" /></label></div><label>Correo electrónico<input type="email" name="email" required placeholder="tu@empresa.com" /></label><label>¿En qué podemos ayudarte?<textarea name="mensaje" required rows="5" placeholder="Cuéntanos brevemente sobre tu operación o necesidad de inspección" /></label><label className="consent"><input type="checkbox" name="consentimiento_lopdp" required /><span>Acepto el tratamiento de mis datos personales por parte de FLC Quality Control para gestionar mi solicitud, conforme a la Ley Orgánica de Protección de Datos Personales (LOPDP) de Ecuador.</span></label><button type="submit" className="button button-primary">Enviar solicitud <ArrowRight size={17} /></button></form></section><section className="map-strip"><div className="section-frame map-content"><MapPin size={22} /><div><strong>Tababela · Quito</strong><span>El centro estratégico de la floricultura ecuatoriana.</span></div><a href="https://maps.google.com/?q=Tababela,Quito,Ecuador" target="_blank" rel="noreferrer" className="text-link">Ver ubicación <ArrowRight size={16} /></a></div></section></> }
+function LeadMagnet() { return <section className="section-frame lead-magnet"><div><p className="eyebrow eyebrow-light">Primer paso, sin costo</p><h2>Agenda tu primera inspección de diagnóstico gratuita.</h2></div><Link to="/contacto" className="button button-light">Quiero agendarla <ArrowRight size={17} /></Link></section> }
+function Footer() { return <footer className="site-footer"><div className="section-frame footer-grid"><div><Link to="/" className="brand footer-brand"><span className="brand-mark">FLC</span><span className="brand-copy"><strong>Quality Control</strong><small>Florícola · Ecuador</small></span></Link><p>Control de calidad para flores que cruzan fronteras.</p></div><div className="footer-column"><strong>Explora</strong><Link to="/nosotros">Nosotros</Link><Link to="/servicios">Servicios</Link><Link to="/contacto">Contacto</Link></div><div className="footer-column"><strong>Contacto</strong><a href="mailto:flc.ec.qc@gmail.com">flc.ec.qc@gmail.com</a><a href="tel:+593984063454">+593 984 063 454</a><span>Tababela, Quito · Ecuador</span></div></div><div className="section-frame footer-bottom"><span>© {new Date().getFullYear()} FLC Quality Control</span><span>Hecho para elevar cada estándar.</span></div></footer> }
+export default App

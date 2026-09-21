@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#022c22;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#065f46;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="petalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fb7185;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e11d48;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#047857;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo circular -->
+  <rect width="64" height="64" rx="16" fill="url(#bgGrad)"/>
+
+  <!-- Tallo -->
+  <path d="M32 44 Q31 50 30 56" stroke="url(#leafGrad)" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Hoja izquierda -->
+  <path d="M32 48 Q24 46 22 40 Q28 40 32 46 Z" fill="url(#leafGrad)"/>
+
+  <!-- Hoja derecha -->
+  <path d="M32 50 Q40 48 42 42 Q36 42 32 48 Z" fill="url(#leafGrad)" opacity="0.85"/>
+
+  <!-- Pétalos (rosa de 6 pétalos) -->
+  <g transform="translate(32 30)">
+    <!-- Pétalos traseros -->
+    <ellipse cx="0" cy="-9" rx="5" ry="9" fill="url(#petalGrad)" opacity="0.85"/>
+    <ellipse cx="0" cy="9" rx="5" ry="9" fill="url(#petalGrad)" opacity="0.85"/>
+    <ellipse cx="-9" cy="0" rx="9" ry="5" fill="url(#petalGrad)" opacity="0.85"/>
+    <ellipse cx="9" cy="0" rx="9" ry="5" fill="url(#petalGrad)" opacity="0.85"/>
+
+    <!-- Pétalos diagonales -->
+    <ellipse cx="-6" cy="-6" rx="4" ry="8" transform="rotate(-45 -6 -6)" fill="url(#petalGrad)" opacity="0.7"/>
+    <ellipse cx="6" cy="-6" rx="4" ry="8" transform="rotate(45 6 -6)" fill="url(#petalGrad)" opacity="0.7"/>
+    <ellipse cx="-6" cy="6" rx="4" ry="8" transform="rotate(45 -6 6)" fill="url(#petalGrad)" opacity="0.7"/>
+    <ellipse cx="6" cy="6" rx="4" ry="8" transform="rotate(-45 6 6)" fill="url(#petalGrad)" opacity="0.7"/>
+
+    <!-- Centro de la flor -->
+    <circle cx="0" cy="0" r="4" fill="#fef3c7"/>
+    <circle cx="0" cy="0" r="2.5" fill="#fbbf24"/>
+  </g>
+</svg>
