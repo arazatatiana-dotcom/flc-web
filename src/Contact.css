@@ -1,0 +1,80 @@
+main:has(.contact-layout) > .page-intro {
+  padding: 14px 0 6px;
+}
+
+main:has(.contact-layout) > .page-intro .eyebrow {
+  margin-bottom: 10px;
+}
+
+main:has(.contact-layout) > .page-intro h1 {
+  max-width: 1000px;
+  margin-bottom: 0;
+  font-size: clamp(32px, 3.6vw, 44px);
+  line-height: 1.08;
+}
+
+main:has(.contact-layout) > .page-intro .intro-text {
+  display: none;
+}
+
+main:has(.contact-layout) .contact-layout {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: 40px;
+  padding-block: 10px 42px;
+}
+
+main:has(.contact-layout) .contact-form {
+  order: -1;
+  gap: 10px;
+  padding: 18px;
+}
+
+main:has(.contact-layout) .contact-form input:not([type=checkbox]),
+main:has(.contact-layout) .contact-form textarea {
+  padding: 8px 10px;
+}
+
+main:has(.contact-layout) .contact-form textarea {
+  min-height: 70px;
+  height: 70px;
+}
+
+main:has(.contact-layout) .contact-details h2 {
+  margin-bottom: 14px;
+  font-size: clamp(30px, 3.2vw, 40px);
+}
+
+main:has(.contact-layout) .contact-items {
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+@media (max-width: 780px) {
+  main:has(.contact-layout) > .page-intro {
+    padding: 24px 0 4px;
+  }
+
+  main:has(.contact-layout) > .page-intro h1 {
+    font-size: 34px;
+  }
+
+  main:has(.contact-layout) .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 26px;
+    padding-block: 18px 48px;
+  }
+
+  main:has(.contact-layout) .contact-form {
+    padding: 20px;
+  }
+
+  main:has(.contact-layout) .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  main:has(.contact-layout) .contact-items {
+    grid-template-columns: 1fr 1fr;
+  }
+}

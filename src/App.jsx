@@ -3,6 +3,7 @@ import { BrowserRouter, Link, NavLink, Route, Routes, useLocation } from 'react-
 import { motion } from 'framer-motion'
 import { ArrowRight, Check, ChevronDown, Clock3, FlaskConical, Leaf, Mail, MapPin, Menu, Microscope, Moon, Phone, Quote, ShieldCheck, Sprout, Sun, Users, X } from 'lucide-react'
 import './App.css'
+import './Contact.css'
 
 const heroImage = 'https://images.unsplash.com/photo-1559563362-c667ba5f5480?auto=format&fit=crop&w=2200&q=85'
 const flowerImage = 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=1200&q=85'
