@@ -26,7 +26,7 @@ function ThemeProvider() {
   useEffect(() => { window.__flcToggleTheme = () => setDark((value) => !value) }, [])
   return null
 }
-function ScrollToTop() { const { pathname } = useLocation(); useEffect(() => window.scrollTo(0, 0), [pathname]); return null }
+function ScrollToTop() { const { pathname } = useLocation(); useEffect(() => { window.scrollTo(0, 0) }, [pathname]); return null }
 function Layout() { return <div className="site-shell"><Navbar /><main><Routes><Route path="/" element={<Home />} /><Route path="/nosotros" element={<About />} /><Route path="/servicios" element={<Services />} /><Route path="/contacto" element={<Contact />} /></Routes></main><Footer /><WhatsAppButton /></div> }
 
 function Navbar() {
